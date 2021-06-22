@@ -1,5 +1,5 @@
 import 'package:disenos/src/theme/theme.dart';
-import 'package:disenos/src/widgets/headers.dart';
+import 'package:disenos/src/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

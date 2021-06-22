@@ -1,43 +1,36 @@
-import 'package:disenos/src/theme/theme.dart';
 import 'package:flutter/material.dart';
-
 import 'package:disenos/src/widgets/slideshow.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-
-class SlideshowPage extends StatelessWidget {
+class SlideShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.purple,
-      // body: MiSlideshow(),
+      backgroundColor: Colors.grey,
       body: Column(
-        children: <Widget>[
-          Expanded(child: MiSlideshow()),
-          Expanded(child: MiSlideshow())
+        children: [
+          Expanded(child: MiSliderShow()),
+          Expanded(child: MiSliderShow()),
         ],
       )
     );
   }
 }
 
-class MiSlideshow extends StatelessWidget {
-
+class MiSliderShow extends StatelessWidget {
+  const MiSliderShow({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    final appTheme = Provider.of<ThemeChanger>(context);
-    final accentColor = appTheme.currentTheme.accentColor;
-
     return Slideshow(
-      bulletPrimario: 20,
-      bulletSecundario: 12,
-      // puntosArriba: true,
-      colorPrimario: ( appTheme.darkTheme ) ? accentColor : Color(0xffFF5A7E),
-      // colorSecundario: Colors.red,
-      slides: <Widget>[
+      bulletPrimario: 15,
+      bulletSecundario: 10,
+      puntosArriba: true,
+      colorPrimario: Colors.yellow,
+      colorSecundario: Colors.black,
+      slides:<Widget> [
         SvgPicture.asset('assets/svgs/slide-1.svg'),
         SvgPicture.asset('assets/svgs/slide-2.svg'),
         SvgPicture.asset('assets/svgs/slide-3.svg'),
@@ -47,4 +40,3 @@ class MiSlideshow extends StatelessWidget {
     );
   }
 }
-

@@ -1,6 +1,4 @@
-import 'package:disenos/src/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 
 class SliverListPage extends StatelessWidget {
@@ -8,11 +6,10 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // body: _Titulo()
-      // body: _ListaTareas()
+      // body: _ListaTareas(),
       body: Stack(
-        children: <Widget>[
+        children: [
           _MainScroll(),
           Positioned(
             bottom: -10,
@@ -21,18 +18,16 @@ class SliverListPage extends StatelessWidget {
           )
         ],
       )
-
    );
   }
 }
 
 class _BotonNewList extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-
+    
     final size = MediaQuery.of(context).size;
-
+    
     return ButtonTheme(
       child: ElevatedButton (
         style: ButtonStyle(
@@ -64,50 +59,37 @@ class _BotonNewList extends StatelessWidget {
   }
 }
 
-
 class _MainScroll extends StatelessWidget {
 
   final items = [
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
+    _ListItem( 'Naranja', Color(0xffF08F66)),
+    _ListItem( 'Family', Color(0xffF2A38A)),
+    _ListItem( 'Sibscripciones', Color(0xffF7CDD5)),
+    _ListItem( 'Libros', Color(0xffDCEBAF)),
+    _ListItem( 'Naranja', Color(0xffF08F66)),
+    _ListItem( 'Family', Color(0xffF2A38A)),
+    _ListItem( 'Sibscripciones', Color(0xffF7CDD5)),
+    _ListItem( 'Libros', Color(0xffDCEBAF)),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
-
-    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
-
     return CustomScrollView(
       slivers: <Widget>[
 
         // SliverAppBar(
         //   floating: true,
-        //   elevation: 0,
         //   backgroundColor: Colors.red,
-        //   title: Text('Hola Mundo'),
+        //   title: Text('Hola'),
         // ),
+
         SliverPersistentHeader(
           floating: true,
           delegate: _SliverCustomHeaderDelegate(
-            minheight: 170,
+            minheight: 180,
             maxheight: 200,
             child: Container(
-              alignment: Alignment.centerLeft,
-              color: appTheme.scaffoldBackgroundColor,
+              color: Colors.white,
               child: _Titulo(),
             )
           )
@@ -116,9 +98,9 @@ class _MainScroll extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
             ...items,
-            SizedBox( height: 100 )
+            SizedBox( height: 100 ,)
           ])
-        )
+        ) 
 
       ],
     );
@@ -136,23 +118,26 @@ class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate{
     @required this.maxheight, 
     @required this.child
   });
-  
+
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand( child: child );
-  }
+      return SizedBox.expand(
+        child: child,
+      );
 
-  @override
-  double get maxExtent => maxheight;
-
-  @override
-  double get minExtent => minheight;
-
-  @override
-  bool shouldRebuild(_SliverCustomHeaderDelegate oldDelegate) {
-    return maxheight != oldDelegate.maxheight ||
-           minheight != oldDelegate.minheight ||
-           child     != oldDelegate.child;
+    }
+  
+    @override
+    double get maxExtent => maxheight;
+  
+    @override
+    double get minExtent => minheight;
+  
+    @override
+    bool shouldRebuild(covariant _SliverCustomHeaderDelegate oldDelegate) {
+      return maxheight != oldDelegate.maxheight || 
+             minExtent != oldDelegate.minheight ||
+             child != oldDelegate.child;
   }
 
 }
@@ -160,103 +145,84 @@ class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate{
 
 class _Titulo extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
-
-    final appTheme = Provider.of<ThemeChanger>(context);
-
     return Column(
-      children: <Widget>[
-        SizedBox( height: 30 ),
+      children: [
+        SizedBox(height: 30,), 
         Container(
-          margin: EdgeInsets.symmetric( horizontal: 30, vertical: 10),
-          child: Text('New', 
-            style: TextStyle( 
-              color: ( appTheme.darkTheme ) ? Colors.grey :Color(0xff532128), 
-              fontSize: 50 )
-          ),
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          child: Text('Nueva', style: TextStyle( color: Color(0xff532128), fontSize: 50),),
         ),
-
         Stack(
-          children: <Widget>[
-            SizedBox( width: 100 ),
+          children: [
+            SizedBox(
+              width: 100,
+            ),            
             Positioned(
               bottom: 8,
               child: Container(
-                width: 150,
+                width: 140,
                 height: 8,
-                color: ( appTheme.darkTheme ) ? Colors.grey :Color(0xffF7CDD5), 
+                color: Color(0xffF7CDD5),
               ),
             ),
 
             Container(
-              child: Text('List', style: TextStyle( color: Color(0xffD93A30), fontSize: 50, fontWeight: FontWeight.bold ),),
+              child: Text('Lista', style: TextStyle( color: Color(0xffD93A30), fontSize: 50, fontWeight: FontWeight.bold),),
             ),
-
-            
-
-            
-
           ],
         )
-
       ],
     );
   }
 }
 
-
-
 class _ListaTareas extends StatelessWidget {
 
   final items = [
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
-    _ListItem( 'Orange', Color(0xffF08F66) ),
-    _ListItem( 'Family', Color(0xffF2A38A) ),
-    _ListItem( 'Subscriptions', Color(0xffF7CDD5) ),
-    _ListItem( 'Books', Color(0xffFCEBAF) ),
+    _ListItem( 'Naranja', Color(0xffF08F66)),
+    _ListItem( 'Family', Color(0xffF2A38A)),
+    _ListItem( 'Sibscripciones', Color(0xffF7CDD5)),
+    _ListItem( 'Libros', Color(0xffDCEBAF)),
+    _ListItem( 'Naranja', Color(0xffF08F66)),
+    _ListItem( 'Family', Color(0xffF2A38A)),
+    _ListItem( 'Sibscripciones', Color(0xffF7CDD5)),
+    _ListItem( 'Libros', Color(0xffDCEBAF)),
   ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) => items[index] );
+      itemBuilder: (BuildContext context, int index) { 
+        return items[index];
+      },
+    );
   }
 }
 
 class _ListItem extends StatelessWidget {
 
-  final String titulo;
+  final String texto;
   final Color color;
 
-  const _ListItem(this.titulo, this.color );
-
-
+  const _ListItem(
+    this.texto,
+    this.color
+  );
+    
   @override
   Widget build(BuildContext context) {
-
-    final appTheme = Provider.of<ThemeChanger>(context);
-
     return Container(
-      child: Text( 
-        titulo, 
-        style: TextStyle( 
-          color: Colors.white, 
-          fontWeight: FontWeight.bold, 
-          fontSize: 20 ),
-      ),
-      padding: EdgeInsets.all(30),
       alignment: Alignment.centerLeft,
+      child: Text(texto, style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+      padding: EdgeInsets.all(30),
       height: 130,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: (appTheme.darkTheme) ? Colors.grey : color,
-        borderRadius: BorderRadius.circular( 30 )
+        color: color,
+        borderRadius: BorderRadius.circular(30)
       ),
     );
   }

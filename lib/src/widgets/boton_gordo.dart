@@ -6,14 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BotonGordo extends StatelessWidget {
 
-  final IconData icon;
+  final IconData icono;
   @required final String texto;
   final Color color1;
   final Color color2;
   @required final Function onPress;
 
   const BotonGordo({
-    this.icon = FontAwesomeIcons.circle,
+    this.icono = FontAwesomeIcons.circle,
     this.texto,
     this.color1 = Colors.grey,
     this.color2 = Colors.blueGrey,
@@ -28,13 +28,13 @@ class BotonGordo extends StatelessWidget {
       onTap: this.onPress,
       child: Stack(
         children: <Widget>[
-          _BotonGordoBackground( this.icon, this.color1, this.color2 ),
+          _BotonGordoBackground( this.icono, this.color1, this.color2 ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox( height: 140, width: 40 ),
-              FaIcon( this.icon, color: Colors.white, size: 40 ),
+              FaIcon( this.icono, color: Colors.white, size: 40 ),
               SizedBox( width: 20 ),
               Expanded(child: Text( this.texto, style: TextStyle( color: Colors.white, fontSize: 18 ) )),
               FaIcon( FontAwesomeIcons.chevronRight, color: Colors.white ),
