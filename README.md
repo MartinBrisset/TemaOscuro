@@ -1,6 +1,1 @@
-# Diseños
-
-Repositorio del curso de Fernando Herrera
-
-- [Fernando-Herrera.com](https://fernando-herrera.com)
-
+# Tema Dark y Tema personalizado
